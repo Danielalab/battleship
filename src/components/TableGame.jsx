@@ -1,14 +1,15 @@
 import styled from 'styled-components';
+import buildInitialTable from '../controllers/buildShips';
 import Square from './Square';
 
 const Table = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 400px;
+  width: 420px;
 `;
 
 const TableGame = () => {
-  const squares = Array(100).fill({ isFilled: false });
+  const squares = buildInitialTable();
   return (
     <Table>
       {squares.map((square) => <Square data={square} />)}
