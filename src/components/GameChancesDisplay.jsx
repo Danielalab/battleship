@@ -23,5 +23,9 @@ const GameChancesDisplay = ({ chances }) => (
 export default GameChancesDisplay;
 
 GameChancesDisplay.propTypes = {
-  chances: PropTypes.number.isRequired,
+  chances: PropTypes.number,
+};
+
+GameChancesDisplay.defaultProps = {
+  chances: null,
 };
