@@ -2,14 +2,16 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styled from 'styled-components';
 import targetIcon from '../img/target.png';
+import equixIcon from '../img/equix.png';
 
 const squaresColor = {
-  battleship: 'red',
+  /* battleship: 'red',
   cruiser: 'pink',
   destroyer: 'green',
-  submarine: 'orange',
+  submarine: 'orange', */
   ocean: '#1597E5',
   default: '#2E4B84',
+  shot: '#952226',
 };
 
 const SquareStyled = styled.div`
@@ -20,7 +22,7 @@ const SquareStyled = styled.div`
   height: 40px;
   margin: 1px;
   width: 40px;
-  :hover > img {
+  :hover > .target-icon {
     background-color: #007a00;
     visibility: visible;
   }
@@ -32,6 +34,11 @@ const Icon = styled.img`
   transition: all 0.05s ease-in;
 `;
 
+const SuccessfulShotIcon = styled(Icon)`
+  visibility: visible;
+  padding: 8px;
+`;
+
 const Square = ({ data, subtractAChance }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [squareColor, setSquareColor] = useState('default');
@@ -39,6 +46,8 @@ const Square = ({ data, subtractAChance }) => {
     const { isFilled } = data;
     if (!isFilled) {
       setSquareColor('ocean');
+    } else {
+      setSquareColor('shot');
     }
     setIsClicked(true);
     subtractAChance();
@@ -46,7 +55,8 @@ const Square = ({ data, subtractAChance }) => {
 
   return (
     <SquareStyled onClick={!isClicked ? handleClick : null} backgroundColor={squareColor}>
-      <Icon src={targetIcon} alt="target icon" />
+      {squareColor !== 'shot' && <Icon src={targetIcon} alt="target icon" className="target-icon" />}
+      {squareColor === 'shot' && <SuccessfulShotIcon src={equixIcon} alt="Equix icon" />}
     </SquareStyled>
   );
 };
