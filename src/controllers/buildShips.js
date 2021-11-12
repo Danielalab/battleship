@@ -44,9 +44,11 @@ const buildInitialTable = () => {
       const shipSquares = buildShip(squares, ship);
       shipSquares.forEach((squarePosition) => {
         squares[squarePosition] = {
+          ...squares[squarePosition],
           isFilled: true,
           type,
           shipSquares,
+          isClicked: false,
         };
       });
     }
