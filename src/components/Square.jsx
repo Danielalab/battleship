@@ -1,18 +1,9 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import targetIcon from '../img/target.png';
 import equixIcon from '../img/equix.png';
-
-const squaresColor = {
-  /* battleship: 'red',
-  cruiser: 'pink',
-  destroyer: 'green',
-  submarine: 'orange', */
-  ocean: '#1597E5',
-  default: '#2E4B84',
-  shot: '#952226',
-};
+import { squaresColor, skullsIconsByShip } from '../util';
 
 const SquareStyled = styled.div`
   background-color: ${(props) => squaresColor[props.backgroundColor]};
@@ -22,6 +13,7 @@ const SquareStyled = styled.div`
   height: 40px;
   margin: 1px;
   width: 40px;
+  transition: background-color 0.05s ease-in;
   :hover > .target-icon {
     background-color: #007a00;
     visibility: visible;
@@ -39,24 +31,39 @@ const SuccessfulShotIcon = styled(Icon)`
   padding: 8px;
 `;
 
-const Square = ({ data, subtractAChance }) => {
+const SkullIcon = styled(Icon)`
+  visibility: visible;
+`;
+
+const Square = ({ data, subtractAChance, handleSuccesfulShot }) => {
+  const { isFilled, isDestroyed, type } = data;
   const [isClicked, setIsClicked] = useState(false);
   const [squareColor, setSquareColor] = useState('default');
   const handleClick = () => {
-    const { isFilled } = data;
     if (!isFilled) {
       setSquareColor('ocean');
     } else {
       setSquareColor('shot');
+      handleSuccesfulShot(data.id);
     }
     setIsClicked(true);
     subtractAChance();
   };
-
+  useEffect(() => {
+    if (isDestroyed) {
+      setTimeout(() => {
+        setSquareColor(type);
+      }, 400);
+    }
+  }, [isDestroyed]);
   return (
-    <SquareStyled onClick={!isClicked ? handleClick : null} backgroundColor={squareColor}>
-      {squareColor !== 'shot' && <Icon src={targetIcon} alt="target icon" className="target-icon" />}
-      {squareColor === 'shot' && <SuccessfulShotIcon src={equixIcon} alt="Equix icon" />}
+    <SquareStyled
+      onClick={!isClicked ? handleClick : null}
+      backgroundColor={squareColor}
+    >
+      {squareColor !== 'shot' && !isDestroyed && <Icon src={targetIcon} alt="target icon" className="target-icon" />}
+      {isDestroyed && <SkullIcon src={skullsIconsByShip[type]} />}
+      {squareColor === 'shot' && !isDestroyed && <SuccessfulShotIcon src={equixIcon} alt="Equix icon" />}
     </SquareStyled>
   );
 };
@@ -68,6 +75,10 @@ Square.propTypes = {
     isFilled: PropTypes.bool.isRequired,
     type: PropTypes.string,
     shipSquares: PropTypes.arrayOf(PropTypes.number),
+    isClicked: PropTypes.bool,
+    isDestroyed: PropTypes.bool,
+    id: PropTypes.string.isRequired,
   }).isRequired,
   subtractAChance: PropTypes.func.isRequired,
+  handleSuccesfulShot: PropTypes.func.isRequired,
 };
