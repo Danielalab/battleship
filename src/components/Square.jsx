@@ -32,7 +32,7 @@ const Icon = styled.img`
   transition: all 0.05s ease-in;
 `;
 
-const Square = ({ data }) => {
+const Square = ({ data, subtractAChance }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [squareColor, setSquareColor] = useState('default');
   const handleClick = () => {
@@ -41,6 +41,7 @@ const Square = ({ data }) => {
       setSquareColor('ocean');
     }
     setIsClicked(true);
+    subtractAChance();
   };
 
   return (
@@ -58,4 +59,5 @@ Square.propTypes = {
     type: PropTypes.string,
     shipSquares: PropTypes.arrayOf(PropTypes.number),
   }).isRequired,
+  subtractAChance: PropTypes.func.isRequired,
 };

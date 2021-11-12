@@ -15,14 +15,28 @@ const Container = styled.div`
   justify-content: center;
 `;
 
+const squares = buildInitialTable();
+
 const BattleshipView = ({ level }) => {
-  const squares = buildInitialTable();
   const [gameChances, setGameChances] = useState(chancesByLevel[level]);
+  const chancesController = () => {
+    if (gameChances) {
+      setGameChances((prevGameChances) => prevGameChances - 1);
+    }
+  };
   return (
     <Container>
       <GameChancesDisplay chances={gameChances} />
       <Table>
-        {squares.map((square) => <Square data={square} subtractAChance={setGameChances} />)}
+        {squares.map(
+          (square) => (
+            <Square
+              key={square.id}
+              data={square}
+              subtractAChance={chancesController}
+            />
+          ),
+        )}
       </Table>
     </Container>
   );
