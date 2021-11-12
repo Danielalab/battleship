@@ -37,7 +37,7 @@ const buildShip = (squares, ship) => {
 };
 
 const buildInitialTable = () => {
-  const squares = Array(100).fill({ isFilled: false });
+  const squares = Array(100).fill(null).map((_, index) => ({ isFilled: false, id: `square-${index}` }));
   ships.forEach((ship) => {
     const { total, type } = ship;
     for (let index = 0; index < total; index += 1) {
