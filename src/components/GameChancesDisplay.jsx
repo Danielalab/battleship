@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Display = styled.div`
@@ -12,10 +13,15 @@ const Text = styled.p`
   margin: 0;
 `;
 
-const GameChancesDisplay = () => (
+const GameChancesDisplay = ({ chances }) => (
   <Display>
     <Text>Game chances</Text>
+    <Text>{chances || 'Infinity'}</Text>
   </Display>
 );
 
 export default GameChancesDisplay;
+
+GameChancesDisplay.propTypes = {
+  chances: PropTypes.number.isRequired,
+};
