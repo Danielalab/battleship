@@ -1,6 +1,11 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import TableGame from '../components/TableGame';
+import { useState } from 'react';
+import Table from '../components/TableGame';
 import GameChancesDisplay from '../components/GameChancesDisplay';
+import Square from '../components/Square';
+import buildInitialTable from '../controllers/buildShips';
+import chancesByLevel from '../util';
 
 const Container = styled.div`
   align-items: center;
@@ -10,11 +15,21 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const BattleshipView = () => (
-  <Container>
-    <GameChancesDisplay />
-    <TableGame />
-  </Container>
-);
+const BattleshipView = ({ level }) => {
+  const squares = buildInitialTable();
+  const [gameChances, setGameChances] = useState(chancesByLevel[level]);
+  return (
+    <Container>
+      <GameChancesDisplay chances={gameChances} />
+      <Table>
+        {squares.map((square) => <Square data={square} subtractAChance={setGameChances} />)}
+      </Table>
+    </Container>
+  );
+};
 
 export default BattleshipView;
+
+BattleshipView.propTypes = {
+  level: PropTypes.string.isRequired,
+};
