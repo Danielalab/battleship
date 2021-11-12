@@ -5,7 +5,7 @@ import Table from '../components/TableGame';
 import GameChancesDisplay from '../components/GameChancesDisplay';
 import Square from '../components/Square';
 import buildInitialTable from '../controllers/buildShips';
-import chancesByLevel from '../util';
+import { chancesByLevel } from '../util';
 
 const Container = styled.div`
   align-items: center;
@@ -15,13 +15,29 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const squares = buildInitialTable();
-
 const BattleshipView = ({ level }) => {
+  const [squares, setSquares] = useState(buildInitialTable());
   const [gameChances, setGameChances] = useState(chancesByLevel[level]);
   const chancesController = () => {
     if (gameChances) {
       setGameChances((prevGameChances) => prevGameChances - 1);
+    }
+  };
+  const handleSuccesfulShot = (squareId) => {
+    const squareClicked = squares.find((square) => square.id === squareId);
+    squareClicked.isClicked = true;
+    const shipIsDestroyed = !(squareClicked.shipSquares.some(
+      (index) => squares[index].isClicked === false,
+    ));
+    if (shipIsDestroyed) {
+      const newSquares = [...squares];
+      squareClicked.shipSquares.forEach((index) => {
+        newSquares[index] = {
+          ...newSquares[index],
+          isDestroyed: true,
+        };
+      });
+      setSquares(newSquares);
     }
   };
   return (
@@ -34,6 +50,7 @@ const BattleshipView = ({ level }) => {
               key={square.id}
               data={square}
               subtractAChance={chancesController}
+              handleSuccesfulShot={handleSuccesfulShot}
             />
           ),
         )}
