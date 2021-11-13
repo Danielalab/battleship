@@ -1,8 +1,9 @@
-export const chancesByLevel = {
-  easy: null, // here null is equal to infinity chances
-  medium: 100,
-  hard: 50,
-};
+export const levels = [
+  { id: 'easy', name: 'easy', chances: null }, // here null is equal to infinity chances
+  { id: 'medium', name: 'medium', chances: 100 },
+  { id: 'hard', name: 'hard', chances: 50 },
+  { id: 'custom', name: 'choose my chances', chances: undefined },
+];
 
 export const squaresColor = {
   battleship: '#952226',
