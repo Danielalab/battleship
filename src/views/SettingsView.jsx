@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Label = styled.label`
@@ -19,11 +20,19 @@ const Field = styled.div`
 `;
 
 const SettingsView = () => {
+  const navigate = useNavigate();
   const [nickname, setNickname] = useState('');
+
   const handleInput = (event) => {
     const value = event.target.value.trim();
     setNickname(value);
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate('/');
+  };
+
   return (
     <>
       <Field>
@@ -44,7 +53,11 @@ const SettingsView = () => {
         <Label htmlFor="user-chances">Choose my game chances</Label>
         <Input type="number" id="user-chances" placeholder="20" min="20" />
       </Field>
-      <Button type="submit" disabled={!nickname}>
+      <Button
+        type="submit"
+        disabled={!nickname}
+        onClick={handleSubmit}
+      >
         start game
       </Button>
     </>
