@@ -4,7 +4,11 @@ import { useState } from 'react';
 import Table from '../components/TableGame';
 import GameChancesDisplay from '../components/GameChancesDisplay';
 import Square from '../components/Square';
-import buildInitialTable from '../controllers/buildShips';
+import { buildInitialTable, buildNewSquares } from '../controllers/buildShips';
+import {
+  checkIfShipIsDestroyed,
+  resgisterAShotAndGetShipPositions,
+} from '../controllers/shots';
 import { chancesByLevel } from '../util';
 
 const Container = styled.div`
@@ -24,20 +28,13 @@ const BattleshipView = ({ level }) => {
     }
   };
   const handleSuccesfulShot = (squareId) => {
-    const squareClicked = squares.find((square) => square.id === squareId);
-    squareClicked.isClicked = true;
-    const shipIsDestroyed = !(squareClicked.shipSquares.some(
-      (index) => squares[index].isClicked === false,
-    ));
+    const shipPositions = resgisterAShotAndGetShipPositions(squares, squareId);
+    const shipIsDestroyed = checkIfShipIsDestroyed(squares, shipPositions);
     if (shipIsDestroyed) {
-      const newSquares = [...squares];
-      squareClicked.shipSquares.forEach((index) => {
-        newSquares[index] = {
-          ...newSquares[index],
-          isDestroyed: true,
-        };
-      });
-      setSquares(newSquares);
+      const newSquares = buildNewSquares(squares, shipPositions);
+      setTimeout(() => {
+        setSquares(newSquares);
+      }, 500);
     }
   };
   return (
