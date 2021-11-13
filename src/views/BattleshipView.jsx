@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { useState } from 'react';
 import Table from '../components/TableGame';
 import GameChancesDisplay from '../components/GameChancesDisplay';
@@ -9,14 +8,6 @@ import {
   checkIfShipIsDestroyed,
   resgisterAShotAndGetShipPositions,
 } from '../controllers/shots';
-
-const Container = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: center;
-`;
 
 const BattleshipView = ({ initialChances }) => {
   const [squares, setSquares] = useState(buildInitialTable());
@@ -37,7 +28,7 @@ const BattleshipView = ({ initialChances }) => {
     }
   };
   return (
-    <Container>
+    <>
       <GameChancesDisplay chances={gameChances} />
       <Table>
         {squares.map(
@@ -51,7 +42,7 @@ const BattleshipView = ({ initialChances }) => {
           ),
         )}
       </Table>
-    </Container>
+    </>
   );
 };
 
