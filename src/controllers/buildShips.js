@@ -36,7 +36,7 @@ const buildShip = (squares, ship) => {
   return buildShip(squares, ship);
 };
 
-const buildInitialTable = () => {
+export const buildInitialTable = () => {
   const squares = Array(100).fill(null).map((_, index) => ({ isFilled: false, id: `square-${index}` }));
   ships.forEach((ship) => {
     const { total, type } = ship;
@@ -56,4 +56,13 @@ const buildInitialTable = () => {
   return squares;
 };
 
-export default buildInitialTable;
+export const buildNewSquares = (prevSquares, shipPositions) => {
+  const newSquares = [...prevSquares];
+  shipPositions.forEach((index) => {
+    newSquares[index] = {
+      ...newSquares[index],
+      isDestroyed: true,
+    };
+  });
+  return newSquares;
+};
