@@ -57,6 +57,7 @@ const SettingsView = ({ levelSelected, saveLevel, chances }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    sessionStorage.setItem('nickname', nickname);
     navigate('/');
   };
 
