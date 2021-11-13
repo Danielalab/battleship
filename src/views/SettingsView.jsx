@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { levels } from '../util';
 
 const Label = styled.label`
   font-size: 2rem;
@@ -19,10 +21,9 @@ const Field = styled.div`
   margin: 2rem 0;
 `;
 
-const SettingsView = () => {
+const SettingsView = ({ levelSelected, saveLevel }) => {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState('');
-
   const handleInput = (event) => {
     const value = event.target.value.trim();
     setNickname(value);
@@ -45,9 +46,15 @@ const SettingsView = () => {
         />
       </Field>
       <Field>
-        <Button>easy</Button>
-        <Button>medium</Button>
-        <Button>hard</Button>
+        {levels.map((level) => (
+          <Button
+            key={level.id}
+            selected={levelSelected === level.id}
+            onClick={() => saveLevel(level.id)}
+          >
+            {level.name}
+          </Button>
+        ))}
       </Field>
       <Field>
         <Label htmlFor="user-chances">Choose my game chances</Label>
@@ -65,3 +72,8 @@ const SettingsView = () => {
 };
 
 export default SettingsView;
+
+SettingsView.propTypes = {
+  levelSelected: PropTypes.string.isRequired,
+  saveLevel: PropTypes.func.isRequired,
+};
