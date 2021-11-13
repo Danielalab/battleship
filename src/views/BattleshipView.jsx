@@ -9,7 +9,6 @@ import {
   checkIfShipIsDestroyed,
   resgisterAShotAndGetShipPositions,
 } from '../controllers/shots';
-import { chancesByLevel } from '../util';
 
 const Container = styled.div`
   align-items: center;
@@ -19,9 +18,9 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const BattleshipView = ({ level }) => {
+const BattleshipView = ({ initialChances }) => {
   const [squares, setSquares] = useState(buildInitialTable());
-  const [gameChances, setGameChances] = useState(chancesByLevel[level]);
+  const [gameChances, setGameChances] = useState(initialChances);
   const chancesController = () => {
     if (gameChances) {
       setGameChances((prevGameChances) => prevGameChances - 1);
@@ -59,5 +58,9 @@ const BattleshipView = ({ level }) => {
 export default BattleshipView;
 
 BattleshipView.propTypes = {
-  level: PropTypes.string.isRequired,
+  initialChances: PropTypes.number,
+};
+
+BattleshipView.defaultProps = {
+  initialChances: 20,
 };
