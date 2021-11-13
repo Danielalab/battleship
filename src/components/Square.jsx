@@ -49,20 +49,22 @@ const Square = ({ data, subtractAChance, handleSuccesfulShot }) => {
     setIsClicked(true);
     subtractAChance();
   };
+
   useEffect(() => {
     if (isDestroyed) {
       setTimeout(() => {
         setSquareColor(type);
-      }, 400);
+      }, 500);
     }
   }, [isDestroyed]);
+
   return (
     <SquareStyled
       onClick={!isClicked ? handleClick : null}
       backgroundColor={squareColor}
     >
       {squareColor !== 'shot' && !isDestroyed && <Icon src={targetIcon} alt="target icon" className="target-icon" />}
-      {isDestroyed && <SkullIcon src={skullsIconsByShip[type]} />}
+      {squareColor !== 'shot' && isDestroyed && <SkullIcon src={skullsIconsByShip[type]} />}
       {squareColor === 'shot' && !isDestroyed && <SuccessfulShotIcon src={equixIcon} alt="Equix icon" />}
     </SquareStyled>
   );
