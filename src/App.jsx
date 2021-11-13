@@ -27,6 +27,7 @@ function App() {
           element={(
             <SettingsView
               levelSelected={gameLevel}
+              chances={customChances || chancesByLevel}
               saveLevel={setGameLevel}
               saveCustomChances={setCustomChances}
             />

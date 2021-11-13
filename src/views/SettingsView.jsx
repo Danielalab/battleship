@@ -47,7 +47,7 @@ const Field = styled.div`
   margin: 2rem 0;
 `;
 
-const SettingsView = ({ levelSelected, saveLevel }) => {
+const SettingsView = ({ levelSelected, saveLevel, chances }) => {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState('');
   const handleInput = (event) => {
@@ -63,7 +63,7 @@ const SettingsView = ({ levelSelected, saveLevel }) => {
   return (
     <>
       <Field>
-        <Label htmlFor="user-nickname">Nickname</Label>
+        <Label htmlFor="user-nickname">Nickname:</Label>
         <Input
           type="text"
           id="user-nickname"
@@ -84,7 +84,14 @@ const SettingsView = ({ levelSelected, saveLevel }) => {
       </Field>
       <Field>
         <Label htmlFor="user-chances">
-          <Input type="number" id="user-chances" placeholder="20" min="20" readOnly={levelSelected !== 'custom'} />
+          Chances:
+          <Input
+            type={levelSelected === 'easy' ? 'text' : 'number'}
+            id="user-chances"
+            min="20"
+            value={chances || 'Infinity'}
+            readOnly={levelSelected !== 'custom'}
+          />
         </Label>
       </Field>
       <ButtonSuccess
@@ -100,7 +107,12 @@ const SettingsView = ({ levelSelected, saveLevel }) => {
 
 export default SettingsView;
 
+SettingsView.defaultProps = {
+  chances: 20,
+};
+
 SettingsView.propTypes = {
   levelSelected: PropTypes.string.isRequired,
   saveLevel: PropTypes.func.isRequired,
+  chances: PropTypes.number,
 };
