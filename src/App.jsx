@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import styled from 'styled-components';
 import BattleshipView from './views/BattleshipView';
@@ -19,11 +19,11 @@ function App() {
   const [customChances, setCustomChances] = useState(undefined);
   const chancesByLevel = levels.find((level) => level.id === gameLevel).chances;
   return (
-    <Container>
-      <Routes>
-        <Route path="/" element={<BattleshipView initialChances={customChances || chancesByLevel} exact />} />
+    <Routes>
+      <Route path="/" element={<Container><Outlet /></Container>}>
+        <Route path="battleship" element={<BattleshipView initialChances={customChances || chancesByLevel} />} />
         <Route
-          path="/settings"
+          index
           element={(
             <SettingsView
               levelSelected={gameLevel}
@@ -32,10 +32,9 @@ function App() {
               saveCustomChances={setCustomChances}
             />
         )}
-          exact
         />
-      </Routes>
-    </Container>
+      </Route>
+    </Routes>
   );
 }
 
