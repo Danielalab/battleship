@@ -4,3 +4,8 @@ export const resgisterAShotAndGetShipPositions = (squares, squareId) => {
   return squareClicked.shipSquares;
 };
 
+export const checkIfShipIsDestroyed = (squares, shipPositions) => (
+  !(shipPositions.some(
+    (index) => squares[index].isClicked === false,
+  ))
+);
