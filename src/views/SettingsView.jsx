@@ -47,12 +47,24 @@ const Field = styled.div`
   margin: 2rem 0;
 `;
 
-const SettingsView = ({ levelSelected, saveLevel, chances }) => {
+const SettingsView = ({
+  levelSelected, saveLevel, chances, saveCustomChances,
+}) => {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState('');
+
   const handleInput = (event) => {
     const value = event.target.value.trim();
-    setNickname(value);
+    const { id } = event.target;
+
+    if (id === 'user-nickname') {
+      setNickname(value);
+    } else {
+      const customChancesValue = parseInt(value, 10);
+      if (customChancesValue >= 20) {
+        saveCustomChances(customChancesValue);
+      }
+    }
   };
 
   const handleSubmit = (event) => {
@@ -92,6 +104,7 @@ const SettingsView = ({ levelSelected, saveLevel, chances }) => {
             min="20"
             value={chances || 'Infinity'}
             readOnly={levelSelected !== 'custom'}
+            onInput={handleInput}
           />
         </Label>
       </Field>
@@ -109,11 +122,12 @@ const SettingsView = ({ levelSelected, saveLevel, chances }) => {
 export default SettingsView;
 
 SettingsView.defaultProps = {
-  chances: 20,
+  chances: 200,
 };
 
 SettingsView.propTypes = {
   levelSelected: PropTypes.string.isRequired,
   saveLevel: PropTypes.func.isRequired,
   chances: PropTypes.number,
+  saveCustomChances: PropTypes.func.isRequired,
 };
