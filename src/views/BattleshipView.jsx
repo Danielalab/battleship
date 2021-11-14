@@ -8,6 +8,7 @@ import Modal from '../components/Modal';
 import Text from '../components/common/Text.styled';
 import { buildInitialTable, buildNewSquares } from '../controllers/buildShips';
 import {
+  checkIfAllShipsAreDestroyed,
   checkIfShipIsDestroyed,
   resgisterAShotAndGetShipPositions,
 } from '../controllers/shots';
@@ -17,6 +18,7 @@ const BattleshipView = ({ initialChances }) => {
   const [squares, setSquares] = useState(buildInitialTable());
   const [gameChances, setGameChances] = useState(initialChances);
   const [showModal, setShowModal] = useState(false);
+  const allShipsAreDestroyed = checkIfAllShipsAreDestroyed(squares);
 
   const chancesController = () => {
     if (gameChances) {
@@ -35,15 +37,17 @@ const BattleshipView = ({ initialChances }) => {
   };
 
   useEffect(() => {
-    if (gameChances === 0) {
+    if (allShipsAreDestroyed || gameChances === 0) {
       setShowModal(true);
     }
-  }, [gameChances]);
+  }, [gameChances, squares]);
 
   return (
     <>
       <Modal show={showModal} handleClose={() => { setShowModal(false); navigate('/'); }}>
-        <Text>You have run out of shots!</Text>
+        <Text>
+          {allShipsAreDestroyed ? 'You are the best captain! You have destroyed all the ships.' : 'You have run out of shots!'}
+        </Text>
       </Modal>
       <GameChancesDisplay chances={gameChances} />
       <Table>
@@ -69,5 +73,5 @@ BattleshipView.propTypes = {
 };
 
 BattleshipView.defaultProps = {
-  initialChances: 20,
+  initialChances: 200,
 };
