@@ -12,6 +12,8 @@ import {
   checkIfShipIsDestroyed,
   resgisterAShotAndGetShipPositions,
 } from '../controllers/shots';
+import GameLegend from '../components/GameLegend';
+import Container from '../components/common/Container.styled';
 
 const BattleshipView = ({ initialChances }) => {
   const navigate = useNavigate();
@@ -43,26 +45,29 @@ const BattleshipView = ({ initialChances }) => {
   }, [gameChances, squares]);
 
   return (
-    <>
+    <Container justifyContent="center" className="w-100">
       <Modal show={showModal} handleClose={() => { setShowModal(false); navigate('/'); }}>
         <Text>
           {allShipsAreDestroyed ? 'You are the best captain! You have destroyed all the ships.' : 'You have run out of shots!'}
         </Text>
       </Modal>
-      <GameChancesDisplay chances={gameChances} />
-      <Table>
-        {squares.map(
-          (square) => (
-            <Square
-              key={square.id}
-              data={square}
-              subtractAChance={chancesController}
-              handleSuccesfulShot={handleSuccesfulShot}
-            />
-          ),
-        )}
-      </Table>
-    </>
+      <div>
+        <GameChancesDisplay chances={gameChances} />
+        <Table>
+          {squares.map(
+            (square) => (
+              <Square
+                key={square.id}
+                data={square}
+                subtractAChance={chancesController}
+                handleSuccesfulShot={handleSuccesfulShot}
+              />
+            ),
+          )}
+        </Table>
+      </div>
+      <GameLegend />
+    </Container>
   );
 };
 

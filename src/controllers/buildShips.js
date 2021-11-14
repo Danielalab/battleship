@@ -1,4 +1,4 @@
-const ships = [
+export const ships = [
   { type: 'battleship', size: 4, total: 1 },
   { type: 'submarine', size: 3, total: 2 },
   { type: 'cruiser', size: 2, total: 3 },

@@ -7,6 +7,18 @@ body {
   color: #ffffff;
 }
 
+.w-100 {
+  width: 100%;
+}
+
+.m-2 {
+  margin: 2rem;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
