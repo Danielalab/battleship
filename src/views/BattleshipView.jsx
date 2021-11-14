@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Table from '../components/TableGame';
 import GameChancesDisplay from '../components/GameChancesDisplay';
 import Square from '../components/Square';
+import Modal from '../components/Modal';
+import Text from '../components/common/Text.styled';
 import { buildInitialTable, buildNewSquares } from '../controllers/buildShips';
 import {
   checkIfShipIsDestroyed,
@@ -10,8 +13,11 @@ import {
 } from '../controllers/shots';
 
 const BattleshipView = ({ initialChances }) => {
+  const navigate = useNavigate();
   const [squares, setSquares] = useState(buildInitialTable());
   const [gameChances, setGameChances] = useState(initialChances);
+  const [showModal, setShowModal] = useState(false);
+
   const chancesController = () => {
     if (gameChances) {
       setGameChances((prevGameChances) => prevGameChances - 1);
@@ -27,8 +33,18 @@ const BattleshipView = ({ initialChances }) => {
       }, 500);
     }
   };
+
+  useEffect(() => {
+    if (gameChances === 0) {
+      setShowModal(true);
+    }
+  }, [gameChances]);
+
   return (
     <>
+      <Modal show={showModal} handleClose={() => { setShowModal(false); navigate('/'); }}>
+        <Text>You have run out of shots!</Text>
+      </Modal>
       <GameChancesDisplay chances={gameChances} />
       <Table>
         {squares.map(
