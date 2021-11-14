@@ -4,6 +4,7 @@ import Text from './common/Text.styled';
 
 const Display = styled.div`
   background-color: #FBD148;
+  display: inline-block;
   padding: 1rem;
   margin: 1rem 0;
 `;
