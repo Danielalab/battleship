@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { Button, ButtonSuccess } from '../components/common/Buttons.styled';
 import { levels } from '../util';
 
 const Label = styled.label`
@@ -18,24 +19,6 @@ const Input = styled.input`
   margin: 0 0.75rem;
   padding: 0.5rem 1rem;
   outline: 0;
-`;
-
-const Button = styled.button`
-  cursor: pointer;
-  font-size: 1.5rem;
-  font-family: 'Press Start 2P', cursive;
-  margin: 0.75rem;
-  padding: 0.5rem 1rem;
-  text-transform: uppercase;
-`;
-
-const ButtonSuccess = styled(Button)`
-  background-color: #113CFC;
-  color: #ffffff;
-  :disabled {
-    background-color: transparent;
-    color: #ffffffa2;
-  }
 `;
 
 const ButtonLevel = styled(Button)`
