@@ -9,3 +9,7 @@ export const checkIfShipIsDestroyed = (squares, shipPositions) => (
     (index) => squares[index].isClicked === false,
   ))
 );
+
+export const checkIfAllShipsAreDestroyed = (squares) => (
+  !(squares.some((square) => square.isFilled && !square.isDestroyed))
+);
