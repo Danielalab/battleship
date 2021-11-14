@@ -34,7 +34,7 @@ const SettingsView = ({
   levelSelected, saveLevel, chances, saveCustomChances,
 }) => {
   const navigate = useNavigate();
-  const [nickname, setNickname] = useState('');
+  const [nickname, setNickname] = useState(sessionStorage.getItem('nickname') || '');
 
   const handleInput = (event) => {
     const value = event.target.value.trim();
@@ -64,6 +64,7 @@ const SettingsView = ({
           type="text"
           id="user-nickname"
           placeholder="Jack Sparrow"
+          value={nickname}
           onInput={handleInput}
         />
       </Field>
