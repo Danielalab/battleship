@@ -21,7 +21,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Container><Outlet /></Container>}>
-        <Route path="battleship" element={<BattleshipView initialChances={customChances || chancesByLevel} />} />
+        <Route path="battleship" element={<BattleshipView initialChances={gameLevel === 'custom' ? customChances : chancesByLevel} />} />
         <Route
           index
           element={(
