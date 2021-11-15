@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon Should renders Icon component 1`] = `
+.c0 {
+  padding: 4px;
+  visibility: visible;
+  -webkit-transition: all 0.05s ease-in;
+  transition: all 0.05s ease-in;
+}
+
+<div>
+  <img
+    class="c0"
+  />
+</div>
+`;
