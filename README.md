@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Battleship
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una página web que permite a nuestra usuaria(o) jugar el famoso videojuego Battleship.
+Nuestra usuaria(o) podrá realizar disparos en nuestro tablero de juego hasta derribar todos los barcos
+o hasta quedarse sin turnos.
 
-## Available Scripts
+![legend](https://user-images.githubusercontent.com/32286663/141671478-716ab420-c78f-4968-a0c0-df6dd59480ae.png)
 
-In the project directory, you can run:
+## Demo
 
-### `yarn start`
+- Puedes ver una demo del proyecto en el siguiente video: [Ver video](https://www.loom.com/share/a8e635ee9c814a17b35b732dc9457cbf)
+- Puede visualizar el proyecto desplegado en el siguiente link: [Battleshipp](https://battleship-c4eb2.web.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> Nota: El formulario inicial le permite personalizar sus turnos. Tenga en cuenta que el formulario valida que el mínimo de turnos sea 20 (cantidad mínima de disparos para destruir todos los barcos).  
+> Por lo cual el campo chances no le permitirá ingresar un número menor a 20.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Correr el proyecto de manera local en su computadora
 
-### `yarn test`
+  1. Clonar el repositorio: `git clone https://github.com/Danielalab/battleship.git`
+  2. Entrar a la carpeta: `cd battleship`
+  3. Instalar las dependencias del proyecto: `npm install`
+  4. Levantar el servidor local: `npm start`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Stack Tecnológico
 
-### `yarn build`
+- React
+- React Router
+- PropTypes
+- styled-components
+- Github: Github actions, issues, project, milestones, releases.
+- Git
+- Eslint: Para este proyecto se hizo uso de 
+[la guía de estilos de Airbnb](https://www.npmjs.com/package/eslint-config-airbnb).
+- Firebase Hoisting
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Planificación 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Para este proyecto se crearon 6 historias de usuario. Cada historia tiene sus criterios de aceptación y definición de terminado.
+La planificación se encuentra en un tablero de Kanban alojado en un proyecto de Github [Ver tablero](https://github.com/Danielalab/battleship/projects/1).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Historias de Usuario
+Por cada Historia de usuario se creo una lista de tareas en issues ([Ver lista de tareas](https://github.com/Danielalab/battleship/issues?q=is%3Aissue+is%3Aclosed)).
 
-### `yarn eject`
+- [HU1: Yo como usuaria(o) debo poder ver un tablero de juego para empezar a jugar](https://github.com/Danielalab/battleship/issues/1)
+- [HU2: Yo como usuaria(o) debo poder interactuar con los espacios del tablero de juego](https://github.com/Danielalab/battleship/issues/2)
+- [HU3: Yo como usuaria(o) debo poder visualizar un mensaje cuando un barco está hundido ](https://github.com/Danielalab/battleship/issues/12)
+- [HU4: Yo como usuaria(o) debo poder elegir el nivel del juego](https://github.com/Danielalab/battleship/issues/18)
+- [HU5:  Yo como usuaria(o) debo poder ingresar el número de turnos](https://github.com/Danielalab/battleship/issues/28)
+- [HU6: Yo como usuaria(o) debo poder visualizar un mensaje final al ganar el juego](https://github.com/Danielalab/battleship/issues/37)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Realeases
+Para este proyecto se realizaron 2 realeases:
+- [v1.0.0:  Shivers by Ed Sheeran](https://github.com/Danielalab/battleship/releases/tag/v1.0.0)
+- [v2.0.0: Cold Heart (PNAU Remix) ](https://github.com/Danielalab/battleship/releases/tag/v2.0.0)
