@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Buttons Should renders Button component 1`] = `
+.c0 {
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-family: 'Press Start 2P',cursive;
+  margin: 0.75rem;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+}
+
+<div>
+  <button
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Buttons Should renders ButtonSuccess component 1`] = `
+.c0 {
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-family: 'Press Start 2P',cursive;
+  margin: 0.75rem;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+}
+
+.c1 {
+  background-color: #113CFC;
+  color: #ffffff;
+}
+
+.c1:disabled {
+  background-color: transparent;
+  color: #ffffffa2;
+}
+
+<div>
+  <button
+    class="c0 c1"
+  />
+</div>
+`;
