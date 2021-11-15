@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text Should renders Text component 1`] = `
+.c0 {
+  font-size: 1.2rem;
+}
+
+<div>
+  <p
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Text Should renders Text with small font-size 1`] = `
+.c0 {
+  font-size: 1rem;
+}
+
+<div>
+  <p
+    class="c0"
+  />
+</div>
+`;
