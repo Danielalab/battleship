@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Square.styled Should renders SquareStyled component 1`] = `
+.c0 {
+  background: #2E4B84;
+  border: 1px solid #1151B5;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 40px;
+  margin: 1px;
+  width: 40px;
+  -webkit-transition: background-color 0.05s ease-in;
+  transition: background-color 0.05s ease-in;
+}
+
+.c0:hover > .target-icon {
+  background-color: #007a00;
+  visibility: visible;
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
